@@ -1,4 +1,4 @@
-import { setFeatures } from '../src/toggles'
+import { setFeatures } from '../../src/toggles2'
 
 // const features = setFeatures('feature1', 'feature2')
 const features = setFeatures({

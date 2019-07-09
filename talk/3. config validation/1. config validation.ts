@@ -1,4 +1,4 @@
-import { getConfig } from '../src/helpers/get-config.done'
+import { getConfig } from '../../src/helpers/get-config.done'
 
 process.env.VALUE_1 = 'val 1'
 process.env.VALUE_2 = '2'
