@@ -1,7 +1,7 @@
 export function setFeatures(featuresOptions) {
     let features
 
-    if (Array.isArray(featuresOptions)) {
+    if (Array.isArray(typeof featuresOptions)) {
         features = featuresOptions.reduce((acc, feature) => {
             acc[feature] = true
             return acc
