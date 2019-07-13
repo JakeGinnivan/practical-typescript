@@ -1,4 +1,4 @@
-class Stringified<T> extends String {
+declare class Stringified<T> extends String {
     private ___stringified: T
 }
 
