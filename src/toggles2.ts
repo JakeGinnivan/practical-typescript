@@ -1,30 +1,30 @@
-export function setFeatures(featuresOptions) {
-    let features
+export function setFeatures<T extends string>(featuresOptions: T[]) {
+    type Features = { [key in T]: FeatureState } // Mapped type, also could use Record<T, boolean>
 
-    if (Array.isArray(featuresOptions)) {
-        features = featuresOptions.reduce((acc, feature) => {
-            acc[feature] = true
-            return acc
-        }, {})
-    } else {
-        features = {}
-        Object.keys(featuresOptions).map(key => {
-            features[key] =
-                typeof featuresOptions[key] === 'boolean'
-                    ? { enabled: featuresOptions[key] }
-                    : featuresOptions[key]
-        })
-    }
+    const features = featuresOptions.reduce<Partial<Features>>((acc, feature) => {
+        acc[feature] = { enabled: true }
+        return acc
+    }, {}) as Features
 
     return {
-        activate: feature =>
+        activate: (feature: T) =>
             features[feature]
                 ? (features[feature] = { enabled: true })
                 : (features[feature].enabled = true),
-        deactivate: feature =>
+        deactivate: (feature: T) =>
             features[feature]
                 ? (features[feature] = { enabled: false })
                 : (features[feature].enabled = false),
-        isActive: feature => features[feature] && features[feature].enabled,
+        isActive: (feature: T) => features[feature] && features[feature].enabled,
+        overridable: () =>
+            Object.keys(features)
+                .map(feature => [feature, features[feature]])
+                .filter(([, featureState]) => featureState.userCanOverride)
+                .map(([feature]) => feature),
     }
+}
+
+interface FeatureState {
+    enabled: boolean
+    userCanOverride?: boolean
 }

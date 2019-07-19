@@ -46,6 +46,27 @@ Use tagged unions instead.
 1. Add `kind` to each type using string literal
 2. delete custom type guards, use tagged unions and type narrowing instead
 
+## Feature toggling
+
+### Toggles 1
+
+Goal: give type safety around the specific features based on initialisation
+
+1. Make generic: `<T extends string>`
+2. Introduce Features type to store data `type Features = { [key in T]: boolean }` // Mapped type, also could use Record<T, boolean>
+3. Type the reduce `<Partial<Features>>`
+
+### Toggles 2
+
+Goal: Initialsation options
+
+1. Add union to fn `| Record<T, boolean | FeatureState>`
+2. Handle it: `Array.isArray(featuresOptions)`
+3. Replace `Features` with `Record<T, FeatureState>`
+4. Use `toRecord`
+   ** `? toRecord(featuresOptions, () => ({ enabled: true }))`
+   ** `: toRecord(featuresOptions, input => typeof input === 'boolean' ? { enabled: true } : input)`
+
 ## Config validation library
 
 ```ts

@@ -11,3 +11,5 @@ features.activate('feature1')
 features.isActive('feature1') //?
 features.isActive('feature2') //?
 features.isActive('feature3') //?
+
+features.overridable() //?
