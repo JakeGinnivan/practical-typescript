@@ -1,3 +1,5 @@
 {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "gitlens.codeLens.enabled": false,
+    "typescript.referencesCodeLens.enabled": true
 }

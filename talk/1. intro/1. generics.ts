@@ -7,3 +7,4 @@ const feature1: FeatureState = {
 }
 
 const stringified = JSON.stringify(feature1)
+stringified //?
