@@ -1,4 +1,4 @@
-export function getConfig<T extends any>(spec: T): ConfigOf<T> {
+export function getConfig<T extends Record<string, ConfigSpec>>(spec: T): ConfigOf<T> {
     return Object.keys(spec).reduce<any>((config, key) => {
         const valueSpec = spec[key]
         const value = process.env[key]
@@ -45,6 +45,6 @@ export function getConfig<T extends any>(spec: T): ConfigOf<T> {
     }, {})
 }
 
-export type ConfigSpec = any
+export type ConfigSpec = 'required-string' | 'required-int' | 'optional-string' | 'optional-int'
 export type SpecToType<ConfigSpec> = any
 export type ConfigOf<T> = any

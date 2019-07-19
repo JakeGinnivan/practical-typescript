@@ -16,15 +16,9 @@ export function setFeatures<T extends string>(featuresOptions: T[]) {
                 ? (features[feature] = { enabled: false })
                 : (features[feature].enabled = false),
         isActive: (feature: T) => features[feature] && features[feature].enabled,
-        overridable: () =>
-            Object.keys(features)
-                .map(feature => [feature, features[feature]])
-                .filter(([, featureState]) => featureState.userCanOverride)
-                .map(([feature]) => feature),
     }
 }
 
 interface FeatureState {
     enabled: boolean
-    userCanOverride?: boolean
 }

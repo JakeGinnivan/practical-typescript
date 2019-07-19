@@ -3,7 +3,7 @@ import { setFeatures } from '../../src/toggles2'
 // const features = setFeatures('feature1', 'feature2')
 const features = setFeatures({
     feature1: true,
-    feature2: { enabled: false, userCanOverride: true },
+    feature2: { enabled: false },
 })
 
 features.activate('feature1')
